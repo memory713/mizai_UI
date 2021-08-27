@@ -5,5 +5,5 @@ export default {
             count: 0
         }
     },
-    template: '<button v-on:click="count++">click me {{count}}<button>'
+    template: '<button v-on:click="count++">click me {{count}}</button>'
 }

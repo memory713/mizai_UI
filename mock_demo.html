@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="mock.js"></script>
+    <script src="jquery.min.js"></script>
+</head>
+
+<body>
+    <div>111</div>
+</body>
+<script src="jsondemo.js"></script>
+<script>
+
+    // 通过Mock.mock函数模拟post请求
+    Mock.mock(/jsondemo/, function (o) {
+        debugger
+        readTextFile("jsondemo.json", function (text) {
+            var data = JSON.parse(text);
+            console.log(data);
+        });
+    })
+
+    function readTextFile(file, callback) {
+        var rawFile = new XMLHttpRequest();
+        rawFile.overrideMimeType("application/json");
+        rawFile.open("GET", file, true);
+        rawFile.onreadystatechange = function () {
+            callback(rawFile.responseText);
+        }
+    }
+
+    $.ajax({
+        url: "jsondemo.js?id=1",
+        // data: { AlbumName: "shanghai", Entered: "5/9/2013" },
+        success: function (result) {
+            //console.log(result)
+        }
+    });
+
+
+    // var data = Mock.mock({
+    //     'list|1-20': [{
+    //         'name|3-5': /[a-z][A-Z]/,
+    //         'age|10-15': 15,
+    //         'gender|1': true,
+    //     }]
+    // })
+</script>
+
+</html>
